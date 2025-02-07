@@ -1,4 +1,5 @@
 import { createColumnHelper } from "@tanstack/react-table";
+import { Badge } from "~/components/ui/badge";
 import { type LivenessMessage } from "~/hooks/use-liveness-websocket";
 
 export type TableEntry = {
@@ -13,13 +14,27 @@ const columnHelper = createColumnHelper<TableEntry>();
 
 export const columns = [
 	columnHelper.display({
-		header: "ID",
+		header: "id",
 		cell: (ctx) => ctx.row.original.id,
 	}),
 	columnHelper.accessor("data.batch-submission.avgInterval", {
-		header: "Batch Submission",
+		header: "batch-submissions",
+		cell: (ctx) => {
+			const value = ctx.getValue();
+			if (!value) {
+				return <Badge variant="outline">not-enough-data</Badge>;
+			}
+			return <span>{value.toFixed(2)}</span>;
+		},
 	}),
 	columnHelper.accessor("data.state-update.avgInterval", {
-		header: "State Update ",
+		header: "state-updates",
+		cell: (ctx) => {
+			const value = ctx.getValue();
+			if (!value) {
+				return <Badge variant="outline">not-enough-data</Badge>;
+			}
+			return <span>{value.toFixed(2)}</span>;
+		},
 	}),
 ];

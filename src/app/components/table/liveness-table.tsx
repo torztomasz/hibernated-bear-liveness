@@ -1,5 +1,9 @@
 "use client";
-import { flexRender, getCoreRowModel } from "@tanstack/react-table";
+import {
+	flexRender,
+	getCoreRowModel,
+	getSortedRowModel,
+} from "@tanstack/react-table";
 import { useReactTable } from "@tanstack/react-table";
 import { groupBy } from "lodash";
 import {
@@ -21,6 +25,7 @@ export function LivenessTable() {
 		data: transformedData,
 		columns: columns,
 		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: getSortedRowModel(),
 	});
 	return (
 		<Table>

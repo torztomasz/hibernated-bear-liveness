@@ -8,7 +8,7 @@ export function LastTransactions() {
 	return (
 		<div>
 			<h2 className="font-mono text-2xl font-bold uppercase">
-				Last transactions
+				Last-transactions
 			</h2>
 			{latestMessages.map((message) => (
 				<Message key={message.timestamp} message={message} />
@@ -21,13 +21,13 @@ function Message({ message }: { message: LivenessMessage }) {
 	return (
 		<div className="w-max space-y-2 rounded-lg p-4">
 			<div className="flex items-center gap-2">
-				<span className="font-medium text-gray-500">Timestamp:</span>
+				<span className="font-medium text-gray-500">timestamp:</span>
 				<span className="font-mono">
 					{new Date(message.timestamp).toLocaleString()}
 				</span>
 			</div>
 			<div className="flex items-center gap-2">
-				<span className="font-medium text-gray-500">Project ID:</span>
+				<span className="font-medium text-gray-500">project-id:</span>
 				<span className="font-mono">{message.projectId}</span>
 			</div>
 			<div className="flex items-center gap-2">
