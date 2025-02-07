@@ -30,11 +30,17 @@ export const ECGChart = () => {
   const [dataLength, setDataLength] = useState(0);
   const [ecgData, setEcgData] = useState<number[]>(range(240).fill(0.25));
 
+  async function playBeep() {
+    const audio = new Audio("/beep.mp3");
+    await audio.play();
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       const newLivenessData = livenessData.length > dataLength;
       if (newLivenessData) {
         setDataLength(livenessData.length);
+        void playBeep();
       }
       updateECGData(
         newLivenessData ? [0.15, 0.5, 1, 0.05] : [0.25, 0.25, 0.25, 0.25],
@@ -106,7 +112,7 @@ export const ECGChart = () => {
   };
 
   return (
-    <div className="h-40 w-full border-2 border-red-500 bg-black p-2">
+    <div className="relative h-40 w-full border-2 border-red-500 bg-black p-2">
       <Line data={data} options={options} />
     </div>
   );
