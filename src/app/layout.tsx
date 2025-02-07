@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import { LivenessDataProvider } from "./components/liveness-data-context";
+import { LivenessDataProvider } from "./_components/liveness-data-context";
 
 export const metadata: Metadata = {
 	title: "Create T3 App",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en" className={`${GeistSans.variable}`}>
-			<body className="mx-auto max-w-5xl py-20">
+			<body className="bg-black text-white font-mono min-h-screen">
 				<TRPCReactProvider>
 					<LivenessDataProvider>{children}</LivenessDataProvider>
 				</TRPCReactProvider>
